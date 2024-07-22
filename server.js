@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import User from "./models/user.js";
@@ -9,9 +10,7 @@ app.use(express.json());
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://ajabafrancis:qBFxL8CdSpxEaATV@cluster0.czdnofv.mongodb.net/Rest-Api?retryWrites=true&w=majority&appName=Cluster0"
-    );
+    await mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
     console.log("mongoDB connected successfully");
   } catch (error) {
     console.log(`Error: ${error.message}`);
